@@ -1,0 +1,44 @@
+return {
+  -- {
+  --   "mxsdev/nvim-dap-vscode-js",
+  --   dependencies = {
+  --     "mfussenegger/nvim-dap", -- DAP (Debug Adapter Protocol) core
+  --   },
+  --   config = function()
+  --     -- Require nvim-dap
+  --     local dap = require("dap")
+  --
+  --     -- Setup nvim-dap-vscode-js
+  --     require("dap-vscode-js").setup({
+  --       -- Path to your Visual Studio Code installation's `node-debug2` or `vscode-js-debug`
+  --       debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
+  --       adapters = { "pwa-node", "node-terminal" }, -- Define which debuggers you want to use
+  --     })
+  --
+  --     -- Configure DAP for JavaScript/TypeScript files
+  --     for _, language in ipairs({ "typescript", "javascript" }) do
+  --       dap.configurations[language] = {
+  --         {
+  --           type = "pwa-node",
+  --           request = "launch",
+  --           name = "Launch file",
+  --           program = "${file}",
+  --           cwd = "${workspaceFolder}",
+  --         },
+  --         {
+  --           type = "pwa-node",
+  --           request = "attach",
+  --           name = "Attach to process",
+  --           processId = require("dap.utils").pick_process,
+  --           cwd = "${workspaceFolder}",
+  --         },
+  --       }
+  --     end
+  --   end,
+  -- },
+  -- Optional: Automatically install vscode-js-debug
+  -- {
+  --   "microsoft/vscode-js-debug",
+  --   build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+  -- },
+}
