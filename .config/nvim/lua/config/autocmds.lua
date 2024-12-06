@@ -16,3 +16,19 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
+
+-- disable word highlighting under the cursor
+-- https://github.com/neovim/nvim-lspconfig/issues/3432#issuecomment-2470973519
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client == nil then
+      return
+    end
+
+    -- Disable word highlighting under the cursor
+    if client.server_capabilities.documentHighlightProvider then
+      client.server_capabilities.documentHighlightProvider = false
+    end
+  end,
+})

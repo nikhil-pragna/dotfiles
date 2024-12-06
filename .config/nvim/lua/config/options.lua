@@ -28,3 +28,5 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 vim.go.background = "light"
+
+vim.opt.cmdheight = 0
