@@ -84,14 +84,11 @@ alias la="ls -latrh"
 alias fman="compgen -c | fzf | xargs man"
 alias ftldr="compgen -c | fzf | xargs tldr --list | tldr "
 
-alias sshStagingBackend="ssh -i \"~/work/bash/keys/bash-staging.pem\" ubuntu@ec2-15-207-134-147.ap-south-1.compute.amazonaws.com"
-alias sshProdBackend="ssh -i \"~/work/bash/keys/bash-production.pem\" ubuntu@ec2-13-234-151-209.ap-south-1.compute.amazonaws.com"
-
 #Directories shortcuts
 alias cdl="cd ~/work/learning/"
 alias cdw="cd ~/work/"
-alias cdb="cd /Users/nikhil/work/billinn"
-alias cdbash="cd /Users/nikhil/work/bash/codebase"
+alias cdb="cd $HOME/work/billinn"
+alias cdbash="cd $HOME/work/bash/codebase"
 
 #Dark mode toggle
 alias dark="osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to true'"
@@ -99,27 +96,27 @@ alias light="osascript -e 'tell application \"System Events\" to tell appearance
 
 #Paths
 export PATH="/usr/local/bin:$PATH"
-export PATH="/Users/nikhil/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/Users/nikhil/Library/Android/sdk/emulator:$PATH"
+export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
 
 # bun completions
-[ -s "/Users/nikhil/.bun/_bun" ] && source "/Users/nikhil/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # go
-export PATH="/Users/nikhil/go/bin:$PATH"
-alias air="/Users/nikhil/go/bin/air"
+export PATH="$HOME/go/bin:$PATH"
+alias air="$HOME/go/bin/air"
 
 # Flutter path setting
-export PATH="$PATH:/Users/nikhil/development/flutter/bin"
+export PATH="$PATH:$HOME/development/flutter/bin"
 
 # pnpm
-export PNPM_HOME="/Users/nikhil/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -127,7 +124,7 @@ esac
 # pnpm end
 
 # Turso
-export PATH="/Users/nikhil/.turso:$PATH"
+export PATH="$HOME/.turso:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -157,4 +154,4 @@ function ff() {
     aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
 }
 
-alias claude="/Users/nikhil/.claude/local/claude"
+alias claude="$HOME/.claude/local/claude"
