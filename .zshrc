@@ -102,6 +102,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/Users/nikhil/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/Users/nikhil/Library/Android/sdk/emulator:$PATH"
 
 # bun completions
 [ -s "/Users/nikhil/.bun/_bun" ] && source "/Users/nikhil/.bun/_bun"
@@ -151,3 +152,9 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+function ff() {
+    aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+}
+
+alias claude="/Users/nikhil/.claude/local/claude"

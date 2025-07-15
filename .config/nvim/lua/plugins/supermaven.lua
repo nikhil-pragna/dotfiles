@@ -9,6 +9,7 @@ return {
           clear_suggestion = "<c-\\>",
           accept_word = "<c-y>",
         },
+        vim.api.nvim_set_keymap("n", "<leader>tc", "<cmd>SupermavenToggle<cr>", { noremap = true, silent = true }),
       })
     end,
   },

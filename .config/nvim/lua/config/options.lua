@@ -26,7 +26,11 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "100"
 vim.go.background = "light"
 
 vim.opt.cmdheight = 0
+
+vim.opt.smoothscroll = false
+
+vim.g.snacks_animate = false

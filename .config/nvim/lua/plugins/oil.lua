@@ -6,6 +6,11 @@ return {
     view_options = {
       show_hidden = true,
     },
+    columns = {
+      "icon",
+      "mtime",
+      { "size", highlight = "Special" },
+    },
   },
   keymaps = {
     -- Your keymappings here (> :help oil-keymaps)

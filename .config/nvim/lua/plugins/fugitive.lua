@@ -4,7 +4,7 @@ return {
   config = function() end,
   keys = {
     {
-      "<leader>gs",
+      "<leader>gS",
       ":Git<cr><c-w>K",
       { desc = "Fugitive status" },
     },

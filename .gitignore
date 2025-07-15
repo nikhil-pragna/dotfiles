@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Logs & Caches
+*.log
+configstore/
+simple-update-notifier/
+flutter/tool_state
+nvim.bak/plugin/packer_compiled.lua
+nvim/plugin/packer_compiled.lua
+
+# Secrets
+gh/hosts.yml
+rclone/rclone.conf
+exercism/user.json
+mcphub/servers.json
+opencode/config.json
+
+.config/zsh/config.d/
+.config/gh/
