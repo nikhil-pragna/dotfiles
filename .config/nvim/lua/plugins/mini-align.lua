@@ -1,6 +1,6 @@
 return {
   "echasnovski/mini.align",
-  config = {
+  opts = {
     -- Align to the first non-blank character of the line
     view = "first-non-blank",
 

@@ -17,6 +17,7 @@ return {
       "typescript",
       "yaml",
       "dart",
+      "elixir",
     },
   },
 }

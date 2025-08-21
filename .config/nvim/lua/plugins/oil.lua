@@ -11,6 +11,7 @@ return {
       "mtime",
       { "size", highlight = "Special" },
     },
+    skip_confirm_for_simple_edits = true,
   },
   keymaps = {
     -- Your keymappings here (> :help oil-keymaps)

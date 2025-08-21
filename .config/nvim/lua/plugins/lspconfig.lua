@@ -1,3 +1,8 @@
+-- Get all default runtime paths
+local runtime_path = vim.api.nvim_get_runtime_file("", true)
+-- Explicitly add the path where `lazy.nvim` installs plugins
+table.insert(runtime_path, vim.fn.stdpath("data") .. "/lazy")
+
 return {
   "neovim/nvim-lspconfig",
   opts = {
@@ -8,13 +13,23 @@ return {
 
     servers = {
       clangd = {
-        settings = {
-          IndentWidth = 4,
-        },
+        settings = {},
       },
       lua_ls = {
         settings = {
-          IndentWidth = 4,
+          Lua = {
+            -- This is the key part for your question
+            diagnostics = {
+              globals = { "vim" },
+            },
+            workspace = {
+              library = runtime_path,
+              checkThirdParty = true,
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
         },
       },
       shopify_theme_ls = {

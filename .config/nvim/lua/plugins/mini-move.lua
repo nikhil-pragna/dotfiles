@@ -1,6 +1,6 @@
 return {
   "echasnovski/mini.move",
-  config = {
+  opts = {
     mappings = {
       -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
       left = "H",
