@@ -132,15 +132,6 @@ esac
 # Turso
 export PATH="$HOME/.turso:$PATH"
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-zinit ice lucid \
-    atinit="export NVM_DIR=$HOME/.nvm" \
-    atload='[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
-zinit snippet "$HOME/.nvm/nvm.sh"
-
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
@@ -167,6 +158,14 @@ function ff() {
 
 alias claude="$HOME/.claude/local/claude"
 
+# fnm
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+  eval "`fnm env`"
+fi
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/nikhil/.dart-cli-completion/zsh-config.zsh ]] && . /Users/nikhil/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+

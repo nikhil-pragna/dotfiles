@@ -1,19 +1,26 @@
 #!/bin/bash
 
 DIRS=(
-  "$HOME/work"
-  "$HOME"
+  "$HOME/work/"
+  "$HOME/work/bash/codebase/"
   "$HOME/Documents/work/"
-  "$HOME/documents/notes"
-  "$HOME/documents/projects"
+  "$HOME/notes/"
+)
+
+CONFIGS=(
+  "$HOME/.config"
+  "$HOME/.dotfiles"
 )
 
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(fd "${DIRS[@]}" --type=dir --max-depth=1 --full-path |
+  selected=$({
+    fd --hidden --type=dir --max-depth=1 --full-path . "${DIRS[@]}"
+    printf "%s\n" "${CONFIGS[@]}"
+  } |
     sed "s|^$HOME/||" |
-    sk --margin 10% --color="bw")
+    fzf --margin 10% --color="bw")
   [[ $selected ]] && selected="$HOME/$selected"
 fi
 
