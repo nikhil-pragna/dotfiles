@@ -3,11 +3,15 @@
 
 # Logs & Caches
 *.log
+*.bak
 configstore/
 simple-update-notifier/
 flutter/tool_state
 nvim.bak/plugin/packer_compiled.lua
 nvim/plugin/packer_compiled.lua
+
+# Tmux plugins (installed via tpm)
+.config/tmux/plugins/
 
 # Secrets
 gh/hosts.yml

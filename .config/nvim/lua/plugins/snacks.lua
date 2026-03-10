@@ -50,8 +50,8 @@ return {
         { section = "keys", gap = 1, padding = 1 },
       },
     },
-    keys = {
-      { "<leader>gs", nil },
-    },
+  },
+  keys = {
+    { "<leader>gs", ":Git<cr><c-w>K", { desc = "Fugitive status" } },
   },
 }

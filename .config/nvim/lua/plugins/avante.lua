@@ -1,36 +1,36 @@
 return {
-  "yetone/avante.nvim",
-  event = "VeryLazy",
-  lazy = false,
-  opts = {
-    providers = {
-      gemini = {
-        -- Make sure to set the GEMINI_API_KEY environment variable.
-        -- You can get an API key from Google AI Studio: https://aistudio.google.com/app/apikey
-        api_key = vim.fn.getenv("GEMINI_API_KEY"),
-        -- Optional: specify the model to use. Defaults to 'gemini-pro'.
-        -- Other options include 'gemini-1.5-pro-latest', 'gemini-pro-vision', etc.
-        engine = "gemini-pro",
-      },
-    },
-  },
-  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  build = "make",
-  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-  dependencies = {
-    "stevearc/dressing.nvim",
-    "nvim-lua/plenary.nvim",
-    "MunifTanjim/nui.nvim",
-    --- The below dependencies are optional,
-    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    {
-      -- Make sure to set this up properly if you have lazy=true
-      "MeanderingProgrammer/render-markdown.nvim",
-      opts = {
-        file_types = { "markdown", "Avante" },
-      },
-      ft = { "markdown", "Avante" },
-    },
-  },
+  -- "yetone/avante.nvim",
+  -- event = "VeryLazy",
+  -- lazy = false,
+  -- opts = {
+  --   providers = {
+  --     gemini = {
+  --       -- Make sure to set the GEMINI_API_KEY environment variable.
+  --       -- You can get an API key from Google AI Studio: https://aistudio.google.com/app/apikey
+  --       api_key = vim.fn.getenv("GEMINI_API_KEY"),
+  --       -- Optional: specify the model to use. Defaults to 'gemini-pro'.
+  --       -- Other options include 'gemini-1.5-pro-latest', 'gemini-pro-vision', etc.
+  --       engine = "gemini-pro",
+  --     },
+  --   },
+  -- },
+  -- -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  -- build = "make",
+  -- -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+  -- dependencies = {
+  --   "stevearc/dressing.nvim",
+  --   "nvim-lua/plenary.nvim",
+  --   "MunifTanjim/nui.nvim",
+  --   --- The below dependencies are optional,
+  --   "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+  --   "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+  --   {
+  --     -- Make sure to set this up properly if you have lazy=true
+  --     "MeanderingProgrammer/render-markdown.nvim",
+  --     opts = {
+  --       file_types = { "markdown", "Avante" },
+  --     },
+  --     ft = { "markdown", "Avante" },
+  --   },
+  -- },
 }

@@ -25,7 +25,7 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "copy to sytem clipb
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "copy line to sytem clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { silent = true })
 
-vim.keymap.set("n", "Q", "<nop>")
+-- vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "Format buffer (LSP)" })
 
 -- remapped for navigation, find other keymaps for navigating quick fix list

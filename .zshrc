@@ -156,7 +156,7 @@ function ff() {
     aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
 }
 
-alias claude="$HOME/.claude/local/claude"
+alias claude="$HOME/.local/bin/claude"
 
 # fnm
 FNM_PATH="/opt/homebrew/opt/fnm/bin"

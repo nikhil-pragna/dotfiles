@@ -4,6 +4,7 @@ DIRS=(
   "$HOME/work/"
   "$HOME/work/bash/codebase/"
   "$HOME/Documents/work/"
+  "$HOME/work/probe/"
   "$HOME/notes/"
 )
 
