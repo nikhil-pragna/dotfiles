@@ -82,8 +82,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias n="nvim ."
 alias vim='nvim'
-alias c='clear'
-
+alias c='claude --dangerously-skip-permissions'
 alias ls='ls --color'
 alias la="ls -latrh"
 
@@ -156,7 +155,10 @@ function ff() {
     aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
 }
 
+ulimit -n 10240
+
 alias claude="$HOME/.local/bin/claude"
+alias cc="claude --dangerously-skip-permissions"
 
 # fnm
 FNM_PATH="/opt/homebrew/opt/fnm/bin"

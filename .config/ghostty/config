@@ -1,0 +1,28 @@
+# Terminal environment
+term = xterm-256color
+
+# Font settings
+font-family = JetBrainsMono Nerd Font
+font-family-italic = JetBrainsMono Nerd Font Italic
+font-family-bold = JetBrainsMono Nerd Font Bold
+font-size = 16
+
+# Window settings
+background-opacity = 1
+window-padding-x = 5
+window-padding-y = 5
+window-decoration = false
+window-width = 100
+window-height = 85
+
+# Scrolling
+scrollback-limit = 10000
+
+# No close confirmation
+confirm-close-surface = false
+
+# Keybind
+keybind = ctrl+shift+6=text:\x1e
+
+# Theme
+theme = Catppuccin Mocha

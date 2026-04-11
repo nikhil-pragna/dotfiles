@@ -6,11 +6,11 @@ return {
     view_options = {
       show_hidden = true,
     },
-    columns = {
-      "icon",
-      "mtime",
-      { "size", highlight = "Special" },
-    },
+    -- columns = {
+    --   { "size", highlight = "Special" },
+    --   "icon",
+    --   "mtime",
+    -- },
     skip_confirm_for_simple_edits = true,
   },
   keymaps = {

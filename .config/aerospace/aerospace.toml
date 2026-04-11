@@ -187,7 +187,6 @@ automatically-unhide-macos-hidden-apps = false
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
 
-# Move Zen to Workspace G
 [[on-window-detected]]
     if.app-id = 'com.apple.finder'
     run = 'layout floating'
@@ -209,7 +208,7 @@ automatically-unhide-macos-hidden-apps = false
     if.app-id = 'app.zen-browser.zen'
     run = 'move-node-to-workspace G'
 
-# Move Zen to Workspace G
+# Move Obsidian to Workspace O
 [[on-window-detected]]
-    if.app-id = 'app.zen-browser.zen'
-    run = 'move-node-to-workspace G'
+    if.app-id = 'md.obsidian'
+    run = 'move-node-to-workspace O'

@@ -17,6 +17,14 @@
 --   end,
 -- })
 
+-- disable diagnostics for markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function(event)
+    vim.diagnostic.enable(false, { bufnr = event.buf })
+  end,
+})
+
 -- disable word highlighting under the cursor
 -- https://github.com/neovim/nvim-lspconfig/issues/3432#issuecomment-2470973519
 vim.api.nvim_create_autocmd("LspAttach", {

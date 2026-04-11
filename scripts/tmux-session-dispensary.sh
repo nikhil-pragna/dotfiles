@@ -34,3 +34,5 @@ if ! tmux has-session -t "$selected_name"; then
 fi
 
 tmux switch-client -t "$selected_name"
+#
+# relected_name=$(echo "$selected" | sed "s|^$HOME/||" | awk -F/ '{if(NF>=2) print $(NF-1)"-"$NF; else print $NF}')
