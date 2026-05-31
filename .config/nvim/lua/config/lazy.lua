@@ -16,28 +16,41 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-  spec = {
-    -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+-- On low-RAM servers (NVIM_LEAN=1) skip heavy / non-TypeScript language extras
+-- (Go, Docker, DAP, test runners) so Mason/treesitter stay lean. The Mac, where
+-- NVIM_LEAN is unset, loads the full set unchanged.
+local lean = vim.env.NVIM_LEAN == "1"
+
+local spec = {
+  -- add LazyVim and import its plugins
+  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+  -- { import = "lazyvim.plugins.extras.coding.luasnip" },
+  { import = "lazyvim.plugins.extras.editor.harpoon2" },
+  -- { import = "lazyvim.plugins.extras.editor.telescope" },
+  { import = "lazyvim.plugins.extras.formatting.prettier" },
+  { import = "lazyvim.plugins.extras.lang.json" },
+  { import = "lazyvim.plugins.extras.lang.markdown" },
+  { import = "lazyvim.plugins.extras.lang.tailwind" },
+  -- { import = "lazyvim.plugins.extras.lang.typescript" },
+  { import = "lazyvim.plugins.extras.lang.yaml" },
+  -- { import = "lazyvim.plugins.extras.linting.eslint" },
+  { import = "lazyvim.plugins.extras.ui.treesitter-context" },
+}
+
+if not lean then
+  vim.list_extend(spec, {
     { import = "lazyvim.plugins.extras.dap.core" },
-    -- { import = "lazyvim.plugins.extras.coding.luasnip" },
-    { import = "lazyvim.plugins.extras.editor.harpoon2" },
-    -- { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "lazyvim.plugins.extras.lang.docker" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "lazyvim.plugins.extras.lang.go" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
-    { import = "lazyvim.plugins.extras.lang.tailwind" },
-    -- { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.yaml" },
-    -- { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.test.core" },
-    { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-    -- import/override with your plugins
-    { import = "plugins" },
-  },
+  })
+end
+
+-- import/override with your plugins (must come last)
+table.insert(spec, { import = "plugins" })
+
+require("lazy").setup({
+  spec = spec,
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
