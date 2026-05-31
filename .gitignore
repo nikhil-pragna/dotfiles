@@ -14,6 +14,11 @@ nvim/plugin/packer_compiled.lua
 .config/tmux/plugins/
 
 # Secrets
+hetzner
+hetzner.pub
+*.pem
+id_ed25519
+id_rsa
 gh/hosts.yml
 rclone/rclone.conf
 exercism/user.json

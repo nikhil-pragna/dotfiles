@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.align",
+  "nvim-mini/mini.align",
   opts = {
     -- Align to the first non-blank character of the line
     view = "first-non-blank",

@@ -37,10 +37,9 @@ return {
         filetypes = { "liquid", "json" },
         root_dir = require("lspconfig.util").root_pattern("shopify.yml", ".shopifyignore", "config.yml"),
       },
+      dartls = {
+        cmd = { "dart", "language-server", "--protocol=lsp" },
+      },
     },
-
-    require("lspconfig").dartls.setup({
-      cmd = { "dart", "language-server", "--protocol=lsp" },
-    }),
   },
 }

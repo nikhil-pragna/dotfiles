@@ -5,7 +5,7 @@ return {
   -- { "folke/flash.nvim", enabled = false },
   { "folke/noice.nvim", enabled = false },
 
-  { "echasnovski/mini.pairs", enabled = true },
+  { "nvim-mini/mini.pairs", enabled = true },
   -- { "nvim-telescope/telescope.nvim", enabled = true },
 
   -- { "saghen/blink.cmp", enabled = false },

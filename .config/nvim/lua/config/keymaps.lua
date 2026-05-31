@@ -43,6 +43,28 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 -- Plugin Keymaps
 vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeToggle)
 
+-- Toggle transparent background
+local transparent = false
+local transparent_groups = { "Normal", "NormalNC", "NormalFloat", "FloatBorder", "SignColumn", "EndOfBuffer" }
+local function apply_transparency()
+  for _, g in ipairs(transparent_groups) do
+    vim.api.nvim_set_hl(0, g, { bg = "none" })
+  end
+end
+vim.api.nvim_create_augroup("UserTransparent", { clear = true })
+vim.keymap.set("n", "<leader>utt", function()
+  transparent = not transparent
+  vim.api.nvim_clear_autocmds({ group = "UserTransparent" })
+  if transparent then
+    apply_transparency()
+    vim.api.nvim_create_autocmd("ColorScheme", { group = "UserTransparent", callback = apply_transparency })
+    vim.notify("Transparency: on")
+  else
+    vim.cmd.colorscheme(vim.g.colors_name)
+    vim.notify("Transparency: off")
+  end
+end, { desc = "Toggle transparent background" })
+
 -- -- Unset swapping lines, tmux send <esx> j as A-j
 vim.keymap.del("i", "<A-j>")
 vim.keymap.del("i", "<A-k>")

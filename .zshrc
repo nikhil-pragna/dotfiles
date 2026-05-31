@@ -81,8 +81,9 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias n="nvim ."
+alias g="nvim +Git"
 alias vim='nvim'
-alias c='claude --dangerously-skip-permissions'
+alias nvims='nvim -c SessionRestore'
 alias ls='ls --color'
 alias la="ls -latrh"
 
@@ -159,6 +160,7 @@ ulimit -n 10240
 
 alias claude="$HOME/.local/bin/claude"
 alias cc="claude --dangerously-skip-permissions"
+alias ccc="cc --continue"
 
 # fnm
 FNM_PATH="/opt/homebrew/opt/fnm/bin"
@@ -170,4 +172,14 @@ fi
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/nikhil/.dart-cli-completion/zsh-config.zsh ]] && . /Users/nikhil/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+
+
+# sqz — context intelligence layer (auto-installed)
+sqz_run() {
+    "$@" 2>&1 | SQZ_CMD="$*" sqz compress
+}
+preexec() {
+    export __SQZ_CMD="$1"
+}
+# sqz — end of auto-installed block
 
