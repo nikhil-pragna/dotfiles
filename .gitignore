@@ -13,6 +13,9 @@ nvim/plugin/packer_compiled.lua
 # Tmux plugins (installed via tpm)
 .config/tmux/plugins/
 
+# Machine-local tmux overrides (e.g. C-a prefix on servers)
+.config/tmux/local.conf
+
 # Secrets
 hetzner
 hetzner.pub

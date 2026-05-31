@@ -3,6 +3,9 @@ local runtime_path = vim.api.nvim_get_runtime_file("", true)
 -- Explicitly add the path where `lazy.nvim` installs plugins
 table.insert(runtime_path, vim.fn.stdpath("data") .. "/lazy")
 
+-- On low-RAM servers (NVIM_LEAN=1) skip the heavy clangd Mason install.
+local lean = vim.env.NVIM_LEAN == "1"
+
 return {
   "neovim/nvim-lspconfig",
   opts = {
@@ -14,6 +17,7 @@ return {
     servers = {
       clangd = {
         settings = {},
+        mason = not lean,
       },
       lua_ls = {
         settings = {
