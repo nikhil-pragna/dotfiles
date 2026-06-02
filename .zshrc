@@ -1,4 +1,8 @@
 
+# Keep VPS / Hermes local environment available.
+[[ -f "$HOME/.local/bin/env" ]] && source "$HOME/.local/bin/env"
+export PATH="$HOME/.local/bin:$PATH"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,7 +10,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ -f "/opt/homebrew/bin/brew" ]] then
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
   # If you're using macOS, you'll want this enabled
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
@@ -50,7 +54,29 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ -f ~/.p10k.zsh ]]; then
+  source ~/.p10k.zsh
+  command -v p10k >/dev/null 2>&1 && p10k reload >/dev/null 2>&1 || true
+fi
+# VPS fallback prompt: if Powerlevel10k doesn't initialize cleanly in this headless shell,
+# still avoid the default `factory%` prompt.
+autoload -Uz colors && colors
+_git_prompt_branch() {
+  local branch
+  branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null) || return
+  local dirty=''
+  git diff --quiet --ignore-submodules HEAD 2>/dev/null || dirty='*'
+  print -r -- " %F{magenta} ${branch}${dirty}%f"
+}
+setopt prompt_subst
+precmd() {
+  local exit_code=$?
+  local prompt_status=''
+  [[ $exit_code -ne 0 ]] && prompt_status="%F{red}✘ ${exit_code}%f "
+  PROMPT="${prompt_status}%F{cyan}%n%f@%F{blue}%m%f %F{green}%~%f$(_git_prompt_branch)
+%F{yellow}❯%f "
+}
+
 
 # Keybindings
 bindkey -v
@@ -97,8 +123,10 @@ alias cdb="cd $HOME/work/billinn"
 alias cdbash="cd $HOME/work/bash/codebase"
 
 #Dark mode toggle
-alias dark="osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to true'"
-alias light="osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to false'"
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias dark="osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to true'"
+  alias light="osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to false'"
+fi
 
 #Paths
 export PATH="/usr/local/bin:$PATH"
@@ -133,14 +161,26 @@ esac
 export PATH="$HOME/.turso:$PATH"
 
 # Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+if command -v fzf >/dev/null 2>&1; then
+  if [[ -r /usr/share/doc/fzf/examples/key-bindings.zsh || -r /usr/share/doc/fzf/examples/completion.zsh ]]; then
+    [[ -r /usr/share/doc/fzf/examples/key-bindings.zsh ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh 2>/dev/null
+    [[ -r /usr/share/doc/fzf/examples/completion.zsh ]] && source /usr/share/doc/fzf/examples/completion.zsh 2>/dev/null
+  elif fzf --zsh >/dev/null 2>&1; then
+    eval "$(fzf --zsh)"
+  fi
+fi
 
-# Load seperated config files
-for conf in "$HOME/.config/zsh/config.d/"*.zsh; do
-  source "${conf}"
-done
-unset conf
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
+
+# Load separated config files
+if [[ -d "$HOME/.config/zsh/config.d" ]]; then
+  for conf in "$HOME/.config/zsh/config.d/"*.zsh(N); do
+    source "${conf}"
+  done
+  unset conf
+fi
 
 #yazi
 function yy() {
@@ -152,11 +192,13 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
-function ff() {
-    aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
-}
+if command -v aerospace >/dev/null 2>&1; then
+  function ff() {
+      aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+  }
+fi
 
-ulimit -n 10240
+[[ -t 0 ]] && ulimit -n 10240 2>/dev/null || true
 
 alias claude="$HOME/.local/bin/claude"
 alias cc="claude --dangerously-skip-permissions"
